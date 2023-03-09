@@ -1,8 +1,12 @@
 "use client";
 
+import { Kit } from "@lingo-app/node";
 import React, { useCallback } from "react";
 
-export default function Picker({ kits }) {
+type Props = {
+    kits: Kit[];
+}
+const Picker: React.FC<Props> =({ kits }) => {
   const [character, setCharacter] = React.useState<string>();
   const [object, setObject] = React.useState<string>();
 
@@ -40,3 +44,4 @@ export default function Picker({ kits }) {
     </>
   );
 }
+export default Picker;
