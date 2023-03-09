@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "postinstall": "yarn dlx @yarnpkg/sdks vscode"
+    "setup": "yarn dlx @yarnpkg/sdks vscode"
   },
   "dependencies": {
     "@types/node": "18.14.6",
