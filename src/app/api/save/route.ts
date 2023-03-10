@@ -19,9 +19,11 @@ export async function POST(request: Request) {
     type: "PNG",
     dimensions: "600",
   });
-  // Generate an image with these files
 
-  const img = await sharp({
+
+  // Generate an image with these files
+  const imagePath = `./${character}--${object}.png`;
+  await sharp({
       create: {
         width: 1200,
         height: 600,
@@ -38,12 +40,13 @@ export async function POST(request: Request) {
       },
     ])
     .png()
-    .toFile("./image.png");
+    .toFile(imagePath);
 
   // This is a placeholder asset creation
   const { item } = await lingo.createFileAsset(
-    "./image.png",
+    imagePath,
     {
+      name: "Generated with Lingo Pair",
       notes: `${character} -- ${object}`,
     },
     {
@@ -52,7 +55,7 @@ export async function POST(request: Request) {
     }
   );
   // Cleanup the temp file
-  fs.rmSync("./image.png");
+  fs.rmSync(imagePath);
 
   return NextResponse.json({});
 }
