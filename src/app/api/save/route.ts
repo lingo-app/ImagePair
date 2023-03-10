@@ -57,5 +57,5 @@ export async function POST(request: Request) {
   // Cleanup the temp file
   fs.rmSync(imagePath);
 
-  return NextResponse.json({});
+  return NextResponse.json({ item });
 }
