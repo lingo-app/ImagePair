@@ -1,5 +1,4 @@
 'use client';
-import Picker from './Picker';
 import { useState } from 'react';
 import ImageColumn from './ImageColumn';
 import { Asset } from '@lingo-app/node';
