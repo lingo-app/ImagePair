@@ -21,6 +21,17 @@ export async function POST(request: Request) {
     dimensions: '600',
   });
 
+  // Delete existing images files in public/created
+  fs.readdir('./public/created', (err, files) => {
+    if (err) throw err;
+
+    for (const file of files) {
+      fs.unlink(path.join('./public/created', file), (err) => {
+        if (err) throw err;
+      });
+    }
+  });
+
   const imagePath = `./public/created/${character}--${object}.png`;
   await sharp({
     create: {
@@ -41,19 +52,5 @@ export async function POST(request: Request) {
     .png()
     .toFile(imagePath);
 
-  const { item } = await lingo.createFileAsset(
-    imagePath,
-    {
-      name: 'Generated with Lingo Pair',
-      notes: `${character.id} -- ${object.id}`,
-    },
-    {
-      kitId: 'C37D7B3F-1B99-49FA-9A53-259384FB846F',
-      sectionId: '56ED8977-BB79-49A5-B6E3-0137AB839376',
-    }
-  );
-
-  fs.rmSync(imagePath);
-
-  return NextResponse.json({ item });
+  return NextResponse.json(imagePath);
 }
