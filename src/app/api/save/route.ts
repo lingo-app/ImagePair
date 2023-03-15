@@ -25,7 +25,7 @@ export async function POST(request: Request) {
   await sharp({
     create: {
       width: 1200,
-      height: 1200,
+      height: 600,
       channels: 4,
       background: 'transparent',
     },
