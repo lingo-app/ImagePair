@@ -13,17 +13,66 @@ const DIV = styled.div`
   display: flex;
   flex-direction: column;
   overflow: scroll;
-  max-height: 100vh;
-  scrollbar-width: 2px;
-  padding: 16px;
+  height: 100%;
+  position: relative;
   gap: 16px;
+  padding: 0 16px;
+  background: var(--white);
+
+  &::-webkit-scrollbar {
+    height: 100%;
+    width: 4px;
+    /* visibility: hidden; */
+  }
+
+  &::-webkit-scrollbar-thumb {
+    /* visibility: hidden; */
+  }
+
+  &:hover {
+    ::-webkit-scrollbar {
+      position: relative;
+      height: 100%;
+      width: 4px;
+      background: transparent;
+      visibility: visible;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--scrollThumb);
+      border-radius: 8px;
+      visibility: visible;
+      position: absolute;
+      left: 0px;
+    }
+  }
+
   button {
     display: flex;
     justify-content: center;
     align-items: center;
+    border: solid 4px transparent;
+    background: #ffffff;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    transition: border 200ms ease, box-shadow 200ms ease;
+    padding: 8px 0;
+    border-radius: 8px;
+    min-height: 200px;
+    img {
+      height: 80%;
+    }
+
+    &:nth-child(1) {
+      margin-top: 16px;
+    }
+
+    &:hover {
+      /* border: solid 4px var(--grey); */
+      box-shadow: rgba(0, 0, 0, 0.2) 0px 8px 12px;
+    }
 
     &.selected {
-      border: solid 5px blue;
+      border: solid 4px var(--primary);
     }
   }
 `;
