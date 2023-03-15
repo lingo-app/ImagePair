@@ -55,8 +55,12 @@ const DIV = styled.div`
     background: #ffffff;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
     transition: border 200ms ease, box-shadow 200ms ease;
-    padding: 24px 0;
+    padding: 8px 0;
     border-radius: 8px;
+    min-height: 200px;
+    img {
+      height: 80%;
+    }
 
     &:nth-child(1) {
       margin-top: 16px;

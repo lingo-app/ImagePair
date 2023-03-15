@@ -5,17 +5,17 @@ import { Asset } from '@lingo-app/node';
 import styled from 'styled-components';
 import GlobalCSS from './GlobalCSS';
 import Preview from './Preview';
-import SimplePreview from './SimplePreview';
+import SimplePreview from './Preview';
 
 const DIV = styled.div`
-  display: flex;
   width: 100%;
+  display: flex;
   justify-content: flex-start;
-  /* align-items: flex-start; */
   height: 100%;
 
   .columns {
-    width: 50%;
+    width: 60%;
+    min-width: 400px;
     display: flex;
     gap: 0px;
     padding: 0px;
@@ -49,14 +49,12 @@ function App({ data }: AppProps) {
             selected={character}
             setSelected={setCharacter}
           />
-          {/* <div className='separator'></div> */}
           <ImageColumn
             data={data.objects}
             selected={object}
             setSelected={setObject}
           />
         </div>
-        {/* <Preview character={character} object={object} /> */}
         <SimplePreview character={character} object={object} />
       </DIV>
     </>
