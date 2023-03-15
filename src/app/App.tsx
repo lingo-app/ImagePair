@@ -10,13 +10,17 @@ import SimplePreview from './SimplePreview';
 const DIV = styled.div`
   display: flex;
   width: 100%;
-  min-height: 100vh;
   justify-content: flex-start;
-  align-items: flex-start;
+  /* align-items: flex-start; */
+  height: 100%;
 
   .columns {
     width: 50%;
     display: flex;
+    gap: 0px;
+    padding: 0px;
+    height: 100vh;
+    overflow: hidden;
 
     .separator {
       width: 1px;
@@ -45,7 +49,7 @@ function App({ data }: AppProps) {
             selected={character}
             setSelected={setCharacter}
           />
-          <div className='separator'></div>
+          {/* <div className='separator'></div> */}
           <ImageColumn
             data={data.objects}
             selected={object}

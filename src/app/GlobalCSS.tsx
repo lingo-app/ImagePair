@@ -5,7 +5,11 @@ import { createGlobalStyle } from 'styled-components';
 
 const GlobalCSS = createGlobalStyle`
   :root {
+    --white: #ffffff;
     --grey: #ececec;
+    --primary: #1E96FC;
+    --primaryHover: #1378d0;
+    --scrollThumb:#d8d8d8;
   }
 
   * {

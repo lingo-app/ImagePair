@@ -10,10 +10,14 @@ type Props = {
 
 const DIV = styled.div`
   width: 100%;
-  img {
-    width: 100%;
-    height: auto;
+  height: 500px;
+  .imgWrapper {
+    img {
+      width: 100%;
+      height: auto;
+    }
   }
+
   button {
     width: 100%;
     display: flex;
