@@ -35,7 +35,7 @@ export default function Preview({ character, object, onReset }: Props) {
       setSavedImage(undefined);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [character, objectg]);
+  }, [character, object]);
 
   function renderButtons() {
     console.log(savedImage);
