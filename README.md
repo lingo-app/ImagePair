@@ -1,38 +1,35 @@
- This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+ This is a demo project for the [Lingo API](https://developer.lingoapp.com).
 
-## Getting Started
+## Live demo
 
-First, run the development server:
+You can view the live demo at [https://image-pair.lingoapp.com](https://image-pair.lingoapp.com).
 
+Select a character and an object the click save. The result will then be uploaded to Lingo. You can view all of the results in Lingo [here](https://lingo.lingoapp.com/s/oAgp6E/?v=0)
+
+## How it works
+
+This project uses [NextJS](https://nextjs.org) and server side rendering. SSR allows us to fetch data from Lingo on the server, keeping our API key private.
+
+The `page.tsx` component fetches "characters" and "objects" from two sections in Lingo then passes that data to our client side components.
+
+The frontend allows the user to select a character and object. To save the image we pass the selected asset IDs to a simple API which composes the two images next to eachother and saves the result to another section in Lingo. Again, this happens on the server so we can interact with Lingo without making our API key publicly available in the frontend code.
+
+The save endpoint makes use of lingo export options to fetch the SVG assets as PNGs at the desired size.
+
+## Running locally
+
+1. Clone this repo
+2. Run `yarn` to install packages
+3. Create a `.env.local` file and enter your space id and api key (see below)
+3. Run `yarn dev` to start the development server
+4. Open [http://localhost:3000](http://localhost:3000) with your browser
+
+
+The `.env.local` file should look like this
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+LINGO_SPACE_ID="123"
+LINGO_API_KEY="<my-api-key>"
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Hosting
+We host this demo project using AWS Amplify though you could host it anyway you want. Instead of using SSR you could also fetch all the data via a simple API with endpoints to fetch the data.
