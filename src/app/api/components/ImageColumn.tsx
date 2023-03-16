@@ -34,7 +34,10 @@ export default function ImageColumn({
 }
 
 const Wrapper = styled.div`
-  width 100%
+  width 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
 `;
 
 const Title = styled.h3`
@@ -46,16 +49,17 @@ const Title = styled.h3`
 const ContentWrapper = styled.div`
   width: 100%;
   display: flex;
+  flex: 1;
   flex-direction: column;
-  overflow: scroll;
-  height: 100%;
+  overflow-y: scroll;
   position: relative;
   gap: 16px;
   padding: 0 16px;
+  padding-bottom: 16px;
   background: var(--white);
 
   &::-webkit-scrollbar {
-    height: 100%;
+    height: 100;
     width: 4px;
   }
 
@@ -89,6 +93,7 @@ const Button = styled.button`
   padding: 8px 0;
   border-radius: 8px;
   min-height: 200px;
+
   img {
     height: 80%;
   }
