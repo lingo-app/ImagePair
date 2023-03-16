@@ -25,7 +25,7 @@ export default function ImageColumn({
             onClick={() => setSelected(obj)}
             className={obj.id == selected?.id ? "selected" : ""}
           >
-            <img src={(obj as any).permalink} alt="" />
+            <img src={obj.permalink} alt="" />
           </Button>
         ))}
       </ContentWrapper>

@@ -12,6 +12,10 @@ export default function Preview({ character, object, onReset }: Props) {
   const [savedImage, setSavedImage] = useState<Item | "loading">();
 
   async function handleClick() {
+    if (!character || !object) {
+      alert("Select a character and object to save");
+      return;
+    }
     // Here we are calling our simple API save endpoint in src/app/api/save/route.tsx
     setSavedImage("loading");
     const res = await fetch("/api/save", {
@@ -71,8 +75,8 @@ export default function Preview({ character, object, onReset }: Props) {
     <Wrapper>
       <h3>Preview</h3>
       <PreviewImage>
-        <img src={(character as any)?.permalink} alt={character?.name} />
-        <img src={(object as any)?.permalink} alt={object?.name} />
+        <img src={character?.permalink} alt={character?.name} />
+        <img src={object?.permalink} alt={object?.name} />
       </PreviewImage>
       {renderButtons()}
     </Wrapper>

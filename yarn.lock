@@ -326,9 +326,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@lingo-app/node@npm:^2.0.3":
-  version: 2.0.3
-  resolution: "@lingo-app/node@npm:2.0.3"
+"@lingo-app/node@npm:^2.0.4":
+  version: 2.0.4
+  resolution: "@lingo-app/node@npm:2.0.4"
   dependencies:
     "@ctrl/tinycolor": ^3.6.0
     btoa: ^1.2.1
@@ -337,7 +337,7 @@ __metadata:
     node-fetch: ^2.6.9
     query-string: ^7.1.3
     regenerator-runtime: ^0.13.11
-  checksum: 597b9f7c4268bbdbb10d287ef39df4e9bbd36cf7869fbdbd5f255e702d151ef5e420f4e56643aa8b26553f1f459fbf84ddc19d4df163fcbb341c717ff297c044
+  checksum: 13a832eec3ce25cc66162303d860bced2dba4f052570117bcf1ba1cde9d9f3d448879b5c4bfd98d5d082c92b3317a459ebc2e846ac24b228f0b991888e15e7e2
   languageName: node
   linkType: hard
 
@@ -2345,7 +2345,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "image-pair@workspace:."
   dependencies:
-    "@lingo-app/node": ^2.0.3
+    "@lingo-app/node": ^2.0.4
     "@types/merge-images": ^1.2.1
     "@types/node": 18.14.6
     "@types/react": 18.0.28
