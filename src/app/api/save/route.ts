@@ -22,10 +22,7 @@ export async function POST(request: Request) {
     dimensions: "600",
   });
 
-  const tmpPath = fs.mkdtempSync(os.tmpdir());
-
-  const imagePath = path.join(tmpPath, `${character}--${object}.png`);
-  console.log(tmpPath, imagePath);
+  const imagePath = `/tmp/${character}--${object}.png`;
   await sharp({
     create: {
       width: 1200,
