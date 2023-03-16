@@ -54,6 +54,7 @@ export async function POST(request: Request) {
     {
       kitId: "C37D7B3F-1B99-49FA-9A53-259384FB846F",
       sectionId: "56ED8977-BB79-49A5-B6E3-0137AB839376",
+      displayOrder: "prepend",
     }
   );
 
