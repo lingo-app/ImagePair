@@ -1,8 +1,9 @@
-import lingo from '@lingo-app/node';
-import { NextResponse } from 'next/server';
-import sharp from 'sharp';
-import fs from 'fs';
-import path from 'path';
+import lingo from "@lingo-app/node";
+import { NextResponse } from "next/server";
+import sharp from "sharp";
+import fs from "fs";
+import os from "os";
+import path from "path";
 
 lingo.setup(
   Number(process.env.LINGO_SPACE_ID),
@@ -13,21 +14,24 @@ export async function POST(request: Request) {
   const { character, object } = await request.json();
 
   const characterFile = await lingo.downloadAsset(character, {
-    type: 'PNG',
-    dimensions: '600',
+    type: "PNG",
+    dimensions: "600",
   });
   const objectFile = await lingo.downloadAsset(object, {
-    type: 'PNG',
-    dimensions: '600',
+    type: "PNG",
+    dimensions: "600",
   });
 
-  const imagePath = `./public/created/${character}--${object}.png`;
+  const tmpPath = fs.mkdtempSync(os.tmpdir());
+
+  const imagePath = `/${tmpPath}/${character}--${object}.png`;
+  console.log(tmpPath, imagePath);
   await sharp({
     create: {
       width: 1200,
       height: 600,
       channels: 4,
-      background: 'transparent',
+      background: "transparent",
     },
   })
     .composite([
@@ -44,12 +48,12 @@ export async function POST(request: Request) {
   const { item } = await lingo.createFileAsset(
     imagePath,
     {
-      name: 'Generated with Lingo Pair',
+      name: "Generated with Lingo Pair",
       notes: `${character.id} -- ${object.id}`,
     },
     {
-      kitId: 'C37D7B3F-1B99-49FA-9A53-259384FB846F',
-      sectionId: '56ED8977-BB79-49A5-B6E3-0137AB839376',
+      kitId: "C37D7B3F-1B99-49FA-9A53-259384FB846F",
+      sectionId: "56ED8977-BB79-49A5-B6E3-0137AB839376",
     }
   );
 

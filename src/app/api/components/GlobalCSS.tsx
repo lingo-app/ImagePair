@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from "styled-components";
 
 // styled.div
 // createGlobalStyle
@@ -34,11 +34,6 @@ const GlobalCSS = createGlobalStyle`
     margin: 0px !important;
   }
 
-  a,
-  a:visited {
-    text-decoration: none;
-  }
-
   #App {
     position: relative;
     width: 100%;
@@ -54,6 +49,23 @@ const GlobalCSS = createGlobalStyle`
     font-weight: inherit;
     color: inherit;
     letter-spacing: inherit;
+  }
+
+  a,
+  a:visited {
+    text-decoration: none;
+  }
+  a {
+    color: #1E96FC;
+    transition: color 200ms ease;
+
+    &:hover {
+      color: #1378d0;
+    }
+  }
+
+  p > a {
+    font-size: inherit;
   }
 
   button {
@@ -152,7 +164,6 @@ const GlobalCSS = createGlobalStyle`
   h4,
   h5,
   h6,
-  a,
   p {
     color: inherit;
   }
@@ -182,7 +193,29 @@ const GlobalCSS = createGlobalStyle`
     line-height: 16px;
     text-align: center;
     letter-spacing: 1.25px;
-    text-transform: uppercase;
+    cursor: pointer;
+  }
+
+  button.primary,
+  a.primary {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    font-weight: 700;
+    background-color: var(--primary);
+    color: white;
+    border-radius: 8px;
+    transition: background-color 200ms ease;
+
+    &:hover {
+      color: white;
+      background-color: var(--primaryHover);
+    }
+    &:disabled {
+      opacity: 50%;
+    }
   }
 
   .overline {
