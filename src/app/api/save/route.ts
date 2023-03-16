@@ -46,7 +46,7 @@ export async function POST(request: Request) {
     imagePath,
     {
       name: "Generated with Lingo Pair",
-      notes: `${character.id} -- ${object.id}`,
+      notes: `Created from\ncharacter: ${character}\nObject: ${object}`,
     },
     {
       kitId: "C37D7B3F-1B99-49FA-9A53-259384FB846F",
