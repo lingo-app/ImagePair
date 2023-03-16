@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from "styled-components";
 
 // styled.div
 // createGlobalStyle
@@ -182,7 +182,7 @@ const GlobalCSS = createGlobalStyle`
     line-height: 16px;
     text-align: center;
     letter-spacing: 1.25px;
-    text-transform: uppercase;
+    cursor: pointer;
   }
 
   .overline {

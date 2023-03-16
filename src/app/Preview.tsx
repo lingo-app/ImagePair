@@ -1,14 +1,14 @@
-'use client';
-import { useEffect, useState } from 'react';
-import { Asset, Item } from '@lingo-app/node';
-import styled from 'styled-components';
+import { useEffect, useState } from "react";
+import { Asset, Item } from "@lingo-app/node";
+import styled from "styled-components";
 
 type Props = {
   character: Asset | undefined;
   object: Asset | undefined;
+  onReset: () => void;
 };
 
-const DIV = styled.div`
+const Wrapper = styled.div`
   width: 100%;
   min-width: 480px;
   height: 100vh;
@@ -19,7 +19,8 @@ const DIV = styled.div`
   align-items: center;
   gap: 16px;
 
-  button {
+  button,
+  a.primary {
     width: 100%;
     display: flex;
     justify-content: center;
@@ -32,6 +33,7 @@ const DIV = styled.div`
     transition: background-color 200ms ease;
 
     &:hover {
+      color: white;
       background-color: var(--primaryHover);
     }
     &:disabled {
@@ -39,22 +41,6 @@ const DIV = styled.div`
     }
   }
 
-  .preview {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background: white;
-    height: auto;
-    position: relative;
-    padding: 24px;
-    border-radius: 8px;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
-    aspect-ratio: 2/1;
-    img {
-      height: 100%;
-    }
-  }
   a {
     color: var(--primary);
     transition: color 200ms ease;
@@ -65,13 +51,31 @@ const DIV = styled.div`
   }
 `;
 
-export default function Preview({ character, object }: Props) {
-  const [savedImage, setSavedImage] = useState<Item | 'loading'>();
+const PreviewImage = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: white;
+  height: auto;
+  position: relative;
+  padding: 24px;
+  border-radius: 8px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  aspect-ratio: 2/1;
+  img {
+    height: 100%;
+  }
+`;
+
+export default function Preview({ character, object, onReset }: Props) {
+  const [savedImage, setSavedImage] = useState<Item | "loading">();
 
   async function handleClick() {
-    setSavedImage('loading');
-    const res = await fetch('/api/save', {
-      method: 'POST',
+    // Here we are calling our simple API save endpoint in src/app/api/save/route.tsx
+    setSavedImage("loading");
+    const res = await fetch("/api/save", {
+      method: "POST",
       body: JSON.stringify({
         character: character?.id,
         object: object?.id,
@@ -81,33 +85,54 @@ export default function Preview({ character, object }: Props) {
     setSavedImage(item);
   }
 
-  return (
-    <DIV>
-      <div className='preview'>
-        <img src={(character as any).permalink} alt={character?.name} />
-        <img src={(object as any).permalink} alt={object?.name} />
-      </div>
+  useEffect(() => {
+    // Reset the state if new character or object are selected
+    if (savedImage) {
+      setSavedImage(undefined);
+    }
+  }, [character, object, savedImage]);
 
-      <button
-        onClick={handleClick}
-        disabled={savedImage == 'loading' ? true : false}
-      >
-        Save to Lingo
-      </button>
-      {(() => {
-        if (savedImage && savedImage != 'loading') {
-          return (
-            <a
-              target='_blank'
-              href={`https://lingo.lingoapp.com/a/${savedImage.id}`}
-            >
-              View in lingo
-            </a>
-          );
-        } else if (savedImage == 'loading') {
-          return <p>Loading...</p>;
-        }
-      })()}
-    </DIV>
+  function renderButtons() {
+    // While the image is being saved, Render a loading button
+    if (savedImage == "loading") {
+      return (
+        <button onClick={handleClick} disabled>
+          Saving to Lingo...
+        </button>
+      );
+    } else if (savedImage) {
+      // When the image has been saved, render a button to view in lingo
+      return (
+        <>
+          <a
+            className="primary"
+            target="_blank"
+            href={`https://lingo.lingoapp.com/a/${savedImage?.id}`}
+          >
+            View in lingo
+          </a>
+          <a onClick={onReset}>Reset</a>
+        </>
+      );
+    } else {
+      // Render a save button
+      return (
+        <>
+          <button onClick={handleClick}>Save to Lingo</button>
+          <a onClick={onReset}>Reset</a>
+        </>
+      );
+    }
+  }
+
+  return (
+    <Wrapper>
+      <h3>Preview</h3>
+      <PreviewImage>
+        <img src={(character as any)?.permalink} alt={character?.name} />
+        <img src={(object as any)?.permalink} alt={object?.name} />
+      </PreviewImage>
+      {renderButtons()}
+    </Wrapper>
   );
 }

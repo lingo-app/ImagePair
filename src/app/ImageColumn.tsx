@@ -1,14 +1,25 @@
-'use client';
-import { Asset } from '@lingo-app/node';
-import styled from 'styled-components';
+"use client";
+import { Asset } from "@lingo-app/node";
+import styled from "styled-components";
 
 type Props = {
+  title: string;
   data: Asset[];
-  selected: Asset | undefined;
+  selected?: Asset;
   setSelected: Function;
 };
 
-const DIV = styled.div`
+const Wrapper = styled.div`
+  width 100%
+`;
+
+const Title = styled.h3`
+  width: 100%;
+  padding: 16px;
+  text-align: center;
+`;
+
+const ContentWrapper = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -46,49 +57,57 @@ const DIV = styled.div`
       left: 0px;
     }
   }
+`;
 
-  button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: solid 4px transparent;
-    background: #ffffff;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
-    transition: border 200ms ease, box-shadow 200ms ease;
-    padding: 8px 0;
-    border-radius: 8px;
-    min-height: 200px;
-    img {
-      height: 80%;
-    }
+const Button = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: solid 4px transparent;
+  background: #ffffff;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  transition: border 200ms ease, box-shadow 200ms ease;
+  padding: 8px 0;
+  border-radius: 8px;
+  min-height: 200px;
+  img {
+    height: 80%;
+  }
 
-    &:nth-child(1) {
-      margin-top: 16px;
-    }
+  &:nth-child(1) {
+    margin-top: 16px;
+  }
 
-    &:hover {
-      /* border: solid 4px var(--grey); */
-      box-shadow: rgba(0, 0, 0, 0.2) 0px 8px 12px;
-    }
+  &:hover {
+    /* border: solid 4px var(--grey); */
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 8px 12px;
+  }
 
-    &.selected {
-      border: solid 4px var(--primary);
-    }
+  &.selected {
+    border: solid 4px var(--primary);
   }
 `;
 
-export default function ImageColumn({ selected, setSelected, data }: Props) {
+export default function ImageColumn({
+  title,
+  selected,
+  setSelected,
+  data,
+}: Props) {
   return (
-    <DIV>
-      {data.map((obj) => (
-        <button
-          key={obj.id}
-          onClick={() => setSelected(obj)}
-          className={obj.id == selected?.id ? 'selected' : ''}
-        >
-          <img src={(obj as any).permalink} alt='' />
-        </button>
-      ))}
-    </DIV>
+    <Wrapper>
+      <Title>{title}</Title>
+      <ContentWrapper>
+        {data.map((obj) => (
+          <Button
+            key={obj.id}
+            onClick={() => setSelected(obj)}
+            className={obj.id == selected?.id ? "selected" : ""}
+          >
+            <img src={(obj as any).permalink} alt="" />
+          </Button>
+        ))}
+      </ContentWrapper>
+    </Wrapper>
   );
 }

@@ -1,6 +1,6 @@
-import React from 'react';
-import lingo, { Asset, ItemType, Kit } from '@lingo-app/node';
-import App from './App';
+import React from "react";
+import lingo, { Asset, ItemType, Kit } from "@lingo-app/node";
+import App from "./App";
 
 async function getSectionAssets(id: string): Promise<Asset[]> {
   const section = await lingo.fetchSection(id);
@@ -15,8 +15,10 @@ lingo.setup(
 );
 
 export default async function Home() {
-  const characters = await getSectionAssets('RG72q5');
-  const objects = await getSectionAssets('Pww1EY');
+  // This component is a next server component, it will run on the server which allows us to
+  // fetch data from lingo without exposing  our API key in frontend code
+  const characters = await getSectionAssets("RG72q5");
+  const objects = await getSectionAssets("Pww1EY");
 
   return <App data={{ characters, objects }} />;
 }
