@@ -9,7 +9,7 @@ export default function Welcome() {
       <p>Select a chacter and object to the left to get started.</p>
 
       <p>
-        You can view the connect kit in{" "}
+        You can view the connected kit in{" "}
         <a
           href="https://lingo.lingoapp.com/k/Image-Pair-RkDAz6"
           target="_blank"
