@@ -8,66 +8,6 @@ type Props = {
   onReset: () => void;
 };
 
-const Wrapper = styled.div`
-  width: 100%;
-  min-width: 480px;
-  height: 100vh;
-  /* background: #dddddd; */
-  padding: 16px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 16px;
-
-  button,
-  a.primary {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-    font-weight: 700;
-    background-color: var(--primary);
-    color: white;
-    border-radius: 8px;
-    transition: background-color 200ms ease;
-
-    &:hover {
-      color: white;
-      background-color: var(--primaryHover);
-    }
-    &:disabled {
-      opacity: 50%;
-    }
-  }
-
-  a {
-    color: var(--primary);
-    transition: color 200ms ease;
-
-    &:hover {
-      color: var(--primaryHover);
-    }
-  }
-`;
-
-const PreviewImage = styled.div`
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background: white;
-  height: auto;
-  position: relative;
-  padding: 24px;
-  border-radius: 8px;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
-  aspect-ratio: 2/1;
-  img {
-    height: 100%;
-  }
-`;
-
 export default function Preview({ character, object, onReset }: Props) {
   const [savedImage, setSavedImage] = useState<Item | "loading">();
 
@@ -96,7 +36,7 @@ export default function Preview({ character, object, onReset }: Props) {
     // While the image is being saved, Render a loading button
     if (savedImage == "loading") {
       return (
-        <button onClick={handleClick} disabled>
+        <button className="primary" onClick={handleClick} disabled>
           Saving to Lingo...
         </button>
       );
@@ -118,7 +58,9 @@ export default function Preview({ character, object, onReset }: Props) {
       // Render a save button
       return (
         <>
-          <button onClick={handleClick}>Save to Lingo</button>
+          <button className="primary" onClick={handleClick}>
+            Save to Lingo
+          </button>
           <a onClick={onReset}>Reset</a>
         </>
       );
@@ -136,3 +78,31 @@ export default function Preview({ character, object, onReset }: Props) {
     </Wrapper>
   );
 }
+
+const Wrapper = styled.div`
+  width: 100%;
+  min-width: 480px;
+  height: 100vh;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+`;
+
+const PreviewImage = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: white;
+  height: auto;
+  position: relative;
+  padding: 24px;
+  border-radius: 8px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  aspect-ratio: 2/1;
+  img {
+    height: 100%;
+  }
+`;

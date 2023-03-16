@@ -1,4 +1,4 @@
-import StyledComponentsRegistry from "./registry";
+import StyledComponentsRegistry from "./api/components/registry";
 
 export const metadata = {
   title: "Lingo Image Pair",

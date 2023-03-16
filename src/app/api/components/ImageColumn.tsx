@@ -9,6 +9,30 @@ type Props = {
   setSelected: Function;
 };
 
+export default function ImageColumn({
+  title,
+  selected,
+  setSelected,
+  data,
+}: Props) {
+  return (
+    <Wrapper>
+      <Title>{title}</Title>
+      <ContentWrapper>
+        {data.map((obj) => (
+          <Button
+            key={obj.id}
+            onClick={() => setSelected(obj)}
+            className={obj.id == selected?.id ? "selected" : ""}
+          >
+            <img src={(obj as any).permalink} alt="" />
+          </Button>
+        ))}
+      </ContentWrapper>
+    </Wrapper>
+  );
+}
+
 const Wrapper = styled.div`
   width 100%
 `;
@@ -33,11 +57,6 @@ const ContentWrapper = styled.div`
   &::-webkit-scrollbar {
     height: 100%;
     width: 4px;
-    /* visibility: hidden; */
-  }
-
-  &::-webkit-scrollbar-thumb {
-    /* visibility: hidden; */
   }
 
   &:hover {
@@ -87,27 +106,3 @@ const Button = styled.button`
     border: solid 4px var(--primary);
   }
 `;
-
-export default function ImageColumn({
-  title,
-  selected,
-  setSelected,
-  data,
-}: Props) {
-  return (
-    <Wrapper>
-      <Title>{title}</Title>
-      <ContentWrapper>
-        {data.map((obj) => (
-          <Button
-            key={obj.id}
-            onClick={() => setSelected(obj)}
-            className={obj.id == selected?.id ? "selected" : ""}
-          >
-            <img src={(obj as any).permalink} alt="" />
-          </Button>
-        ))}
-      </ContentWrapper>
-    </Wrapper>
-  );
-}
