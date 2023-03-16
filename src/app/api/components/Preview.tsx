@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Asset, Item } from "@lingo-app/node";
 import styled from "styled-components";
 
@@ -11,7 +11,7 @@ type Props = {
 export default function Preview({ character, object, onReset }: Props) {
   const [savedImage, setSavedImage] = useState<Item | "loading">();
 
-  async function handleClick() {
+  const saveImage = useCallback(async () => {
     if (!character || !object) {
       alert("Select a character and object to save");
       return;
@@ -27,20 +27,22 @@ export default function Preview({ character, object, onReset }: Props) {
     });
     const { item } = await res.json();
     setSavedImage(item);
-  }
+  }, [character, object]);
 
   useEffect(() => {
     // Reset the state if new character or object are selected
     if (savedImage) {
       setSavedImage(undefined);
     }
-  }, [character, object, savedImage]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [character, objectg]);
 
   function renderButtons() {
+    console.log(savedImage);
     // While the image is being saved, Render a loading button
     if (savedImage == "loading") {
       return (
-        <button className="primary" onClick={handleClick} disabled>
+        <button className="primary" disabled>
           Saving to Lingo...
         </button>
       );
@@ -62,7 +64,7 @@ export default function Preview({ character, object, onReset }: Props) {
       // Render a save button
       return (
         <>
-          <button className="primary" onClick={handleClick}>
+          <button className="primary" onClick={saveImage}>
             Save to Lingo
           </button>
           <a onClick={onReset}>Reset</a>

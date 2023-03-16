@@ -24,7 +24,7 @@ export async function POST(request: Request) {
 
   const tmpPath = fs.mkdtempSync(os.tmpdir());
 
-  const imagePath = `/${tmpPath}/${character}--${object}.png`;
+  const imagePath = `${tmpPath}/${character}--${object}.png`;
   console.log(tmpPath, imagePath);
   await sharp({
     create: {
