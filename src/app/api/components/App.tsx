@@ -7,23 +7,6 @@ import GlobalCSS from "./GlobalCSS";
 import Preview from "./Preview";
 import Welcome from "./Welcome";
 
-const AppWrapper = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: flex-start;
-  height: 100%;
-`;
-
-const ColumnWrapper = styled.div`
-  width: 60%;
-  min-width: 400px;
-  display: flex;
-  gap: 0px;
-  padding: 0px;
-  height: 100vh;
-  overflow: hidden;
-`;
-
 type AppProps = {
   data: {
     characters: Asset[];
@@ -65,5 +48,22 @@ function App({ data }: AppProps) {
     </>
   );
 }
+
+const AppWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  height: 100%;
+`;
+
+const ColumnWrapper = styled.div`
+  width: 60%;
+  min-width: 400px;
+  display: flex;
+  gap: 0px;
+  padding: 0px;
+  height: 100vh;
+  overflow: hidden;
+`;
 
 export default App;
