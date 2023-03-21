@@ -3,7 +3,7 @@ import styled from "styled-components";
 export default function Welcome() {
   return (
     <Wrapper>
-      <h1>Weleme to Image Pair</h1>
+      <h1>Welcome to Image Pair</h1>
       <h3>A demo app for the Lingo API</h3>
 
       <p>Select a chacter and object to the left to get started.</p>
