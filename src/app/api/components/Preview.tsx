@@ -38,7 +38,6 @@ export default function Preview({ character, object, onReset }: Props) {
   }, [character, object]);
 
   function renderButtons() {
-    console.log(savedImage);
     // While the image is being saved, Render a loading button
     if (savedImage == "loading") {
       return (

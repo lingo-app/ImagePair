@@ -2,8 +2,6 @@ import lingo from "@lingo-app/node";
 import { NextResponse } from "next/server";
 import sharp from "sharp";
 import fs from "fs";
-import os from "os";
-import path from "path";
 
 lingo.setup(
   Number(process.env.LINGO_SPACE_ID),
